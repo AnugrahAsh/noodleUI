@@ -12,7 +12,6 @@ import {
   Star,
   Heart,
   ChevronDown,
-  Filter,
   Search,
 } from "lucide-react"
 
@@ -23,7 +22,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
   const [selectedVariant, setSelectedVariant] = useState(0)
   const [variantDropdownOpen, setVariantDropdownOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [difficultyFilter, setDifficultyFilter] = useState("all")
 
   const currentComponent = components[currentIndex]
 
@@ -62,35 +60,20 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
     setSelectedVariant(0)
   }
 
-  const getDifficultyColor = (difficulty) => {
-    switch (difficulty) {
-      case "beginner":
-        return "text-green-500 bg-green-100 dark:bg-green-900/20"
-      case "intermediate":
-        return "text-yellow-500 bg-yellow-100 dark:bg-yellow-900/20"
-      case "advanced":
-        return "text-red-500 bg-red-100 dark:bg-red-900/20"
-      default:
-        return "text-gray-500 bg-gray-100 dark:bg-gray-900/20"
-    }
-  }
-
   const filteredComponents = components.filter((component) => {
     const matchesSearch =
       component.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       component.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       component.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
 
-    const matchesDifficulty = difficultyFilter === "all" || component.difficulty === difficultyFilter
-
-    return matchesSearch && matchesDifficulty
+    return matchesSearch
   })
 
   if (!currentComponent) return null
 
   return (
     <div className="space-y-8">
-      {/* Search and Filters */}
+      {/* Search */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -101,20 +84,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-900"
           />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-400" />
-          <select
-            value={difficultyFilter}
-            onChange={(e) => setDifficultyFilter(e.target.value)}
-            className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-900"
-          >
-            <option value="all">All Levels</option>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-          </select>
         </div>
       </div>
 
@@ -222,12 +191,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
 
       {/* Component Info */}
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-        <span
-          className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(currentComponent.difficulty)}`}
-        >
-          {currentComponent.difficulty}
-        </span>
-
         <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">
           <Star size={12} className="text-yellow-500 fill-current" />
           <span>{currentComponent.popularity}</span>
@@ -243,7 +206,7 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
         ))}
       </div>
 
-      {/* Component Preview */}
+      {/* Component Preview - Centered */}
       <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-lg">
         <div className="p-4 border-b border-gray-200 dark:border-gray-800">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -263,8 +226,11 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
           </div>
         </div>
 
-        <div className="p-8 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 flex items-center justify-center min-h-[400px]">
-          <div className="transform transition-all duration-300 hover:scale-105">{currentComponent.component}</div>
+        {/* Centered Component Display */}
+        <div className="p-12 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 flex items-center justify-center min-h-[400px]">
+          <div className="transform transition-all duration-300 hover:scale-105 flex items-center justify-center">
+            {currentComponent.component()}
+          </div>
         </div>
 
         {showCode && (
@@ -313,9 +279,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
             </div>
             <p className="text-xs text-gray-500 line-clamp-2 mb-2">{component.description}</p>
             <div className="flex items-center justify-between">
-              <span className={`px-2 py-1 rounded-full text-xs ${getDifficultyColor(component.difficulty)}`}>
-                {component.difficulty}
-              </span>
               <div className="flex gap-1">
                 {component.tags.slice(0, 2).map((tag) => (
                   <span
@@ -337,7 +300,7 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
             <Search className="w-6 h-6 text-gray-400" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No components found</h3>
-          <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filters.</p>
+          <p className="text-gray-500 dark:text-gray-400">Try adjusting your search.</p>
         </div>
       )}
     </div>
