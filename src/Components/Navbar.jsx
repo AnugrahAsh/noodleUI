@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Moon, Sun, Github, Layers } from "lucide-react"
-
+import { Link } from "react-router-dom"
 
 const Navbar = ({ darkMode, toggleTheme }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -42,9 +42,9 @@ const Navbar = ({ darkMode, toggleTheme }) => {
             <a href="#examples" className="hover:text-blue-400 transition-colors">
               Examples
             </a>
-            <a href="/docs" className="hover:text-blue-400 transition-colors">
+            <Link to="/docs" className="hover:text-blue-400 transition-colors">
               Docs
-            </a>
+            </Link>
           </nav>
           <div className="flex items-center gap-2">
             <a
