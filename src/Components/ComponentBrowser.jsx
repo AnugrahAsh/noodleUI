@@ -73,7 +73,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
 
   return (
     <div className="space-y-8">
-      {/* Search */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -87,7 +86,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
         </div>
       </div>
 
-      {/* Component Navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center justify-center sm:justify-start gap-4">
           <button
@@ -115,7 +113,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
         </div>
 
         <div className="flex items-center justify-center gap-2">
-          {/* Variant Dropdown */}
           {currentGroup.length > 1 && (
             <div className="relative">
               <button
@@ -189,7 +186,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
         </div>
       </div>
 
-      {/* Component Info */}
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
         <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">
           <Star size={12} className="text-yellow-500 fill-current" />
@@ -206,7 +202,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
         ))}
       </div>
 
-      {/* Component Preview - Centered */}
       <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-lg">
         <div className="p-4 border-b border-gray-200 dark:border-gray-800">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -214,7 +209,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
               <h3 className="font-medium mb-1">{currentComponent.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{currentComponent.description}</p>
             </div>
-
             <div className="flex items-center gap-2">
               <button className="p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <Eye size={14} />
@@ -226,7 +220,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
           </div>
         </div>
 
-        {/* Centered Component Display */}
         <div className="p-12 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 flex items-center justify-center min-h-[400px]">
           <div className="transform transition-all duration-300 hover:scale-105 flex items-center justify-center">
             {currentComponent.component()}
@@ -254,7 +247,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
         )}
       </div>
 
-      {/* Component Grid Navigation */}
       <div
         className={`grid gap-4 ${
           viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"

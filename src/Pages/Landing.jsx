@@ -5,17 +5,14 @@ import { Moon, Sun, Github, ArrowRight, Sparkles, Zap, Layers, Palette, Code, He
 import Footer from "../Components/Footer"
 import Navbar from "../Components/Navbar"
 
-const LandingPage = () => {
-  const [darkMode, setDarkMode] = useState(true)
+const LandingPage = ({ darkMode, toggleTheme }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
 
-  const toggleTheme = () => setDarkMode(!darkMode)
-
   useEffect(() => {
-     const handleMouseMove = (e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
 
     const handleScroll = () => setScrollY(window.scrollY)
 
@@ -43,8 +40,7 @@ const LandingPage = () => {
       />
 
       {/* Enhanced Header */}
-      
-      <Navbar />
+      <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
 
       {/* Enhanced Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
@@ -275,49 +271,50 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-          {/* NeoGlass Chat */}
-<div className="group p-8 border border-gray-800/30 rounded-3xl bg-gradient-to-br from-green-500/5 to-transparent hover:from-green-500/10 transition-all duration-300">
-  <div className="flex items-center gap-3 mb-6">
-    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-    <p className="text-sm text-green-400 font-medium">NeoGlass UX</p>
-  </div>
-  <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-xl rounded-2xl p-6 space-y-5 border border-white/20 shadow-lg">
-    <div className="flex items-center gap-4">
-      <div className="w-9 h-9 bg-green-200 dark:bg-green-900 rounded-full flex items-center justify-center">
-        <span className="text-green-600 dark:text-green-300 font-bold">AI</span>
-      </div>
-      <div className="text-sm bg-green-50/70 dark:bg-green-900/50 px-5 py-3 rounded-xl shadow-inner">
-        Greetings! Need insights or just a spark of inspiration?
-      </div>
-    </div>
-    <div className="flex items-center gap-4 justify-end">
-      <div className="text-sm bg-gray-100 dark:bg-gray-800 px-5 py-3 rounded-xl shadow-inner">
-        Yes! Can you suggest UI layouts for a dashboard?
-      </div>
-      <div className="w-9 h-9 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
-        <span className="text-gray-800 dark:text-gray-200 font-bold">Me</span>
-      </div>
-    </div>
-  </div>
-</div>
-{/* Retro Terminal Chat */}
-<div className="group p-8 border border-gray-800/30 rounded-3xl bg-gradient-to-br from-yellow-500/5 to-transparent hover:from-yellow-500/10 transition-all duration-300">
-  <div className="flex items-center gap-3 mb-6">
-    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
-    <p className="text-sm text-yellow-400 font-medium">Retro Terminal</p>
-  </div>
-  <div className="bg-black text-green-400 font-mono text-sm rounded-2xl p-6 space-y-3 border border-green-500/20 shadow-inner">
-    <div className="flex flex-col">
-      <span className="text-green-500">assistant@ai:</span>
-      <span>└── Hello, human. Request logged. Awaiting command.</span>
-    </div>
-    <div className="flex flex-col items-end text-right">
-      <span className="text-blue-400">you@terminal:</span>
-      <span>└── Run creative protocol alpha.</span>
-    </div>
-  </div>
-</div>
 
+          {/* NeoGlass Chat */}
+          <div className="group p-8 border border-gray-800/30 rounded-3xl bg-gradient-to-br from-green-500/5 to-transparent hover:from-green-500/10 transition-all duration-300">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <p className="text-sm text-green-400 font-medium">NeoGlass UX</p>
+            </div>
+            <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-xl rounded-2xl p-6 space-y-5 border border-white/20 shadow-lg">
+              <div className="flex items-center gap-4">
+                <div className="w-9 h-9 bg-green-200 dark:bg-green-900 rounded-full flex items-center justify-center">
+                  <span className="text-green-600 dark:text-green-300 font-bold">AI</span>
+                </div>
+                <div className="text-sm bg-green-50/70 dark:bg-green-900/50 px-5 py-3 rounded-xl shadow-inner">
+                  Greetings! Need insights or just a spark of inspiration?
+                </div>
+              </div>
+              <div className="flex items-center gap-4 justify-end">
+                <div className="text-sm bg-gray-100 dark:bg-gray-800 px-5 py-3 rounded-xl shadow-inner">
+                  Yes! Can you suggest UI layouts for a dashboard?
+                </div>
+                <div className="w-9 h-9 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                  <span className="text-gray-800 dark:text-gray-200 font-bold">Me</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Retro Terminal Chat */}
+          <div className="group p-8 border border-gray-800/30 rounded-3xl bg-gradient-to-br from-yellow-500/5 to-transparent hover:from-yellow-500/10 transition-all duration-300">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+              <p className="text-sm text-yellow-400 font-medium">Retro Terminal</p>
+            </div>
+            <div className="bg-black text-green-400 font-mono text-sm rounded-2xl p-6 space-y-3 border border-green-500/20 shadow-inner">
+              <div className="flex flex-col">
+                <span className="text-green-500">assistant@ai:</span>
+                <span>└── Hello, human. Request logged. Awaiting command.</span>
+              </div>
+              <div className="flex flex-col items-end text-right">
+                <span className="text-blue-400">you@terminal:</span>
+                <span>└── Run creative protocol alpha.</span>
+              </div>
+            </div>
+          </div>
         </div>
         <a href="" className=" m-4 absolute">Show more &rarr;</a>
       </section>
@@ -400,7 +397,7 @@ const LandingPage = () => {
                   {bot.messages.map((msg, j) => (
                     <div
                       key={j}
-                      className={`text-sm px-4 py-3 rounded-2xl bg-${bot.color}-100 dark:bg-${bot.color}-900/30 text-${bot.color}-800 dark:text-${bot.color}-1000 animate-fade-in`}
+                      className={`text-sm px-4 py-3 rounded-2xl bg-${bot.color}-100 dark:bg-${bot.color}-900/30 text-${bot.color}-800 dark:text-${bot.color}-100 animate-fade-in`}
                       style={{ animationDelay: `${j * 200}ms` }}
                     >
                       {msg}

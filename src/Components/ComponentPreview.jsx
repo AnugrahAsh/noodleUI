@@ -55,6 +55,11 @@ export const ComponentPreview = ({ title, description, component, code }) => {
           </pre>
         </div>
       )}
+
+      
     </div>
+
+
+
   )
 }
