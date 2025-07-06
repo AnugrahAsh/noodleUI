@@ -61,7 +61,7 @@ export const Sidebar = ({ isOpen, activeSection, onSectionChange }) => {
 
   return (
     <aside
-      className={`fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block ${
+      className={`fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block cursor-pointer ${
         isOpen ? "block" : "hidden"
       }`}
     >

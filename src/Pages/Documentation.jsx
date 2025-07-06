@@ -30,40 +30,78 @@ import {
   Play,
   Copy,
   Check,
+  Star,
 } from "lucide-react"
 import { allComponents } from "../data/components"
 import { ComponentBrowser } from "../Components/ComponentBrowser"
+import Navbar from "../Components/Navbar"
+import '../App.css' 
+
 
 const Documentation = () => {
+  // Mouse position and scroll tracking for custom cursor
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [scrollY, setScrollY] = useState(0)
+
   // THEME STATE (independent, like Landing page)
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme")
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      return saved === "dark" || (!saved && prefersDark)
+    }
+    return true
+  })
+
   const toggleTheme = () => {
-    setDarkMode((d) => !d)
-    // Update localStorage and document class
-    if (!darkMode) {
-      localStorage.setItem("theme", "dark")
-      document.documentElement.classList.add("dark")
-      document.documentElement.style.colorScheme = "dark"
-    } else {
-      localStorage.setItem("theme", "light")
-      document.documentElement.classList.remove("dark")
-      document.documentElement.style.colorScheme = "light"
+    const newDarkMode = !darkMode
+    setDarkMode(newDarkMode)
+
+    if (typeof window !== "undefined") {
+      if (newDarkMode) {
+        localStorage.setItem("theme", "dark")
+        document.documentElement.classList.add("dark")
+        document.documentElement.style.colorScheme = "dark"
+      } else {
+        localStorage.setItem("theme", "light")
+        document.documentElement.classList.remove("dark")
+        document.documentElement.style.colorScheme = "light"
+      }
     }
   }
 
   useEffect(() => {
-    // Initialize theme from localStorage or system preference
-    const savedTheme = localStorage.getItem("theme")
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    if (typeof window !== "undefined") {
+      // Initialize theme from localStorage or system preference
+      const savedTheme = localStorage.getItem("theme")
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setDarkMode(true)
-      document.documentElement.classList.add("dark")
-      document.documentElement.style.colorScheme = "dark"
-    } else {
-      setDarkMode(false)
-      document.documentElement.classList.remove("dark")
-      document.documentElement.style.colorScheme = "light"
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        setDarkMode(true)
+        document.documentElement.classList.add("dark")
+        document.documentElement.style.colorScheme = "dark"
+      } else {
+        setDarkMode(false)
+        document.documentElement.classList.remove("dark")
+        document.documentElement.style.colorScheme = "light"
+      }
+    }
+  }, [])
+
+  // Mouse position and scroll tracking for custom cursor
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleScroll = () => setScrollY(window.scrollY)
+
+    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("scroll", handleScroll)
     }
   }, [])
 
@@ -85,6 +123,7 @@ const Documentation = () => {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [viewMode, setViewMode] = useState("grid")
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0)
+  const [githubStars, setGithubStars] = useState(null)
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => (prev.includes(section) ? prev.filter((s) => s !== section) : [...prev, section]))
@@ -104,10 +143,30 @@ const Documentation = () => {
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [])
 
+  useEffect(() => {
+    // Fetch GitHub stars
+    const fetchGithubStars = async () => {
+      try {
+        const response = await fetch("https://api.github.com/repos/AnugrahAsh/noodleUI")
+        const data = await response.json()
+        setGithubStars(data.stargazers_count)
+      } catch (error) {
+        console.error("Failed to fetch GitHub stars:", error)
+        setGithubStars("5K+") // Fallback
+      }
+    }
+
+    fetchGithubStars()
+  }, [])
+
   const copyCode = async (code, id) => {
-    await navigator.clipboard.writeText(code)
-    setCopied(id)
-    setTimeout(() => setCopied(""), 2000)
+    try {
+      await navigator.clipboard.writeText(code)
+      setCopied(id)
+      setTimeout(() => setCopied(""), 2000)
+    } catch (err) {
+      console.error("Failed to copy: ", err)
+    }
   }
 
   const categories = [
@@ -614,7 +673,7 @@ const Documentation = () => {
               {[
                 { label: "Components", value: "300+" },
                 { label: "Downloads", value: "100K+" },
-                { label: "GitHub Stars", value: "5K+" },
+                { label: "GitHub Stars", value: githubStars || "5K+" },
                 { label: "Contributors", value: "50+" },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
@@ -741,61 +800,19 @@ const Documentation = () => {
     <div
       className={`${darkMode ? "bg-black text-white" : "bg-white text-black"} transition-colors duration-500 min-h-screen`}
     >
+      {/* Floating cursor effect */}
+      <div
+        className="fixed w-6 h-6 bg-blue-400/20 rounded-full pointer-events-none z-50 transition-all duration-300 ease-out"
+        style={{
+          left: mousePosition.x - 12,
+          top: mousePosition.y - 12,
+          transform: `scale(${scrollY > 100 ? 0.5 : 1})`,
+        }}
+      />
+
       <div className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
-        {/* Enhanced Navbar */}
-        <header className="fixed top-6 left-1/2 transform -translate-x-1/2 flex justify-between items-center px-8 py-4 w-[95%] max-w-7xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl shadow-2xl z-50 border border-gray-200/50 dark:border-gray-700/50">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
-              <Layers className="w-4 h-4 text-white" />
-            </div>
-            <h1 className="text-2xl font-light tracking-tight text-gray-900 dark:text-white">
-              Noodle<span className="text-blue-400 font-medium">UI</span>
-            </h1>
-          </div>
 
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-xl text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
-            >
-              <Search size={14} />
-              <span>Search docs...</span>
-              <kbd className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">⌘K</kbd>
-            </button>
-
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="md:hidden p-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
-              >
-                <Search size={16} />
-              </button>
-
-              <a
-                href="https://github.com/AnugrahAsh/noodleUI.git"
-                target="_blank"
-                className="p-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 hover:scale-105"
-                rel="noopener noreferrer"
-              >
-                <Github size={16} />
-              </a>
-
-              <button
-                onClick={toggleTheme}
-                className="rounded-xl p-2.5 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 hover:scale-105"
-              >
-                {darkMode ? <Sun size={16} /> : <Moon size={16} />}
-              </button>
-
-              <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="lg:hidden p-2.5 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
-              >
-                <Menu size={16} />
-              </button>
-            </div>
-          </div>
-        </header>
+      <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />   
 
         {/* Search Modal */}
         {searchOpen && (

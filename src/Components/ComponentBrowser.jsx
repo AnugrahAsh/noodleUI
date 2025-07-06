@@ -9,7 +9,6 @@ import {
   Code,
   Eye,
   Maximize2,
-  Star,
   Heart,
   ChevronDown,
   Search,
@@ -188,8 +187,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
 
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
         <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">
-          <Star size={12} className="text-yellow-500 fill-current" />
-          <span>{currentComponent.popularity}</span>
         </div>
 
         {currentComponent.tags.map((tag) => (
@@ -265,8 +262,6 @@ export const ComponentBrowser = ({ components, currentIndex, onIndexChange, view
             <div className="flex items-start justify-between mb-2">
               <h4 className="font-medium text-sm truncate flex-1">{component.title}</h4>
               <div className="flex items-center gap-1 ml-2">
-                <Star size={10} className="text-yellow-500 fill-current" />
-                <span className="text-xs text-gray-500">{component.popularity}</span>
               </div>
             </div>
             <p className="text-xs text-gray-500 line-clamp-2 mb-2">{component.description}</p>

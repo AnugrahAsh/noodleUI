@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Moon, Sun, Github, ArrowRight, Sparkles, Zap, Layers, Palette, Code, Heart } from "lucide-react"
 import Footer from "../Components/Footer"
 import Navbar from "../Components/Navbar"
+import '../App.css' // Importing the CSS file for styles
 
 const LandingPage = ({ darkMode, toggleTheme }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -26,10 +27,12 @@ const LandingPage = ({ darkMode, toggleTheme }) => {
   }, [])
 
   return (
+    
     <div
       className={`${darkMode ? "bg-black text-white" : "bg-white text-black"} transition-colors duration-500 overflow-x-hidden`}
     >
       {/* Floating cursor effect */}
+      
       <div
         className="fixed w-6 h-6 bg-blue-400/20 rounded-full pointer-events-none z-50 transition-all duration-300 ease-out"
         style={{
