@@ -17,7 +17,7 @@ export const Metadata = {
   openGraph: {
     title: "NoodleUI - Beautiful React Components",
     description: "Premium React component library with 300+ components for modern web applications",
-    url: "https://noodleui.com",
+    url: "https://noodle-ui.vercel.app",
     siteName: "NoodleUI",
     images: [
       {
@@ -82,3 +82,5 @@ export default function RootLayout({ children: ReactNode }) {
     </html>
   )
 }
+
+

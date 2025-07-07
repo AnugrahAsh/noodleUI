@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import LandingPage from "./Pages/Landing"
+import LandingPage from "./components/Landing"
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(true)
@@ -23,3 +23,5 @@ export default function Home() {
 
   return <LandingPage darkMode={darkMode} toggleTheme={toggleTheme} />
 }
+
+

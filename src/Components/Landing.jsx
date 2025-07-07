@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Moon, Sun, Github, ArrowRight, Sparkles, Zap, Layers, Palette, Code, Heart } from "lucide-react"
-import Footer from "../Components/Footer"
-import Navbar from "../Components/Navbar"
+import Footer from "./Footer"
+import Navbar from "./Navbar"
 import '../App.css' // Importing the CSS file for styles
 
 const LandingPage = ({ darkMode, toggleTheme }) => {
@@ -479,3 +479,5 @@ const LandingPage = ({ darkMode, toggleTheme }) => {
 }
 
 export default LandingPage
+
+
