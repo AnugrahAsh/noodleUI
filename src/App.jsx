@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import LandingPage from './components/landing'
-import Documentation from './components/documentation'
+import Documentation from './components/Documentation'
 
 function App() {
   const [darkMode, setDarkMode] = useState(true)
