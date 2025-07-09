@@ -21,9 +21,9 @@ import {
   Sun,
   Github,
 } from "lucide-react"
-import { Link } from "react-router-dom";
-import '../App.css';
-import '../globals.css';
+import { Link } from "react-router-dom"
+import "../App.css"
+import "../globals.css"
 
 import { ThemeProvider, useTheme } from "./theme-provider"
 
@@ -248,7 +248,7 @@ export function PricingExample() {
           <h3 className="text-2xl font-bold mb-4">{plan}</h3>
           <div className="text-4xl font-bold mb-6">
             ${"$"}
-            {index === 0 ? '9'  === 1 ? '29' : '99'}
+            {index === 0 ? '9' : index === 1 ? '29' : '99'}
             <span className="text-lg text-gray-600">/month</span>
           </div>
           <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
@@ -533,10 +533,8 @@ function DocumentationContent() {
       setSearchResults([])
       return
     }
-    const allItems = sidebarItems.flatMap(section => section.items)
-    const filteredResults = allItems.filter(item =>
-      item.title.toLowerCase().includes(query.toLowerCase())
-    )
+    const allItems = sidebarItems.flatMap((section) => section.items)
+    const filteredResults = allItems.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()))
     setSearchResults(filteredResults)
   }
 
@@ -555,10 +553,10 @@ function DocumentationContent() {
       isCodeView
         ? React.createElement(
             "div",
-            { className: "border border-gray-200 rounded-xl overflow-hidden" },
+            { className: "border border-black/20 dark:border-white/20 rounded-xl overflow-hidden shadow-sm" },
             React.createElement(
               "div",
-              { className: "bg-gray-900 text-gray-100 p-4 overflow-x-auto" },
+              { className: "bg-black dark:bg-slate-950 text-white p-4 overflow-x-auto" },
               React.createElement("pre", { className: "text-sm" }, React.createElement("code", null, code)),
             ),
           )
@@ -607,10 +605,14 @@ function DocumentationContent() {
           React.createElement(
             "div",
             null,
-            React.createElement("h1", { className: "text-4xl font-bold mb-4" }, "Introduction"),
+            React.createElement(
+              "h1",
+              { className: "text-4xl font-bold mb-4 text-gray-900 dark:text-white" },
+              "Introduction",
+            ),
             React.createElement(
               "p",
-              { className: "text-xl text-muted-foreground" },
+              { className: "text-xl text-gray-700 dark:text-gray-300" },
               "Beautiful, accessible React components for modern web applications and chat interfaces.",
             ),
           ),
@@ -619,7 +621,7 @@ function DocumentationContent() {
             "div",
             {
               className:
-                "border border-border rounded-xl p-8 bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20",
+                "border border-gray-200 dark:border-white/20 rounded-xl p-8 bg-gradient-to-br from-blue-50/80 via-indigo-50/60 to-purple-50/80 dark:from-blue-900/40 dark:via-indigo-900/40 dark:to-purple-900/40 shadow-sm",
             },
             React.createElement(
               "div",
@@ -635,15 +637,19 @@ function DocumentationContent() {
               React.createElement(
                 "div",
                 null,
-                React.createElement("h2", { className: "text-2xl font-semibold mb-3" }, "Welcome to NoodleUI"),
+                React.createElement(
+                  "h2",
+                  { className: "text-2xl font-semibold mb-3 text-gray-900 dark:text-white" },
+                  "Welcome to NoodleUI",
+                ),
                 React.createElement(
                   "p",
-                  { className: "text-muted-foreground leading-relaxed text-lg mb-4" },
+                  { className: "text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-4" },
                   "A modern React component library with five distinct categories: Premium components, interactive chatbot UI components, stunning backgrounds, dynamic text animations, and essential basic components. Built with Tailwind CSS and designed for the future of human-AI interaction.",
                 ),
                 React.createElement(
                   "p",
-                  { className: "text-muted-foreground leading-relaxed" },
+                  { className: "text-gray-700 dark:text-gray-300 leading-relaxed" },
                   "NoodleUI provides 300+ carefully crafted components with built-in accessibility, dark mode support, and micro-interactions that bring your interfaces to life.",
                 ),
               ),
@@ -690,20 +696,20 @@ function DocumentationContent() {
                 {
                   key: index,
                   className:
-                    "group p-6 border border-border rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105",
+                    "group p-6 border border-gray-200 dark:border-white/20 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 bg-white dark:bg-slate-800/30 backdrop-blur-sm",
                 },
                 React.createElement(
                   "div",
                   {
                     className:
-                      "w-12 h-12 bg-blue-50 dark:bg-blue-950/50 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300",
+                      "w-12 h-12 bg-blue-50 dark:bg-blue-950/60 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-blue-200 dark:border-blue-800/30",
                   },
                   React.createElement(item.icon, { className: "w-6 h-6 text-blue-600 dark:text-blue-400" }),
                 ),
-                React.createElement("h3", { className: "font-semibold mb-2" }, item.title),
+                React.createElement("h3", { className: "font-semibold mb-2 text-gray-900 dark:text-white" }, item.title),
                 React.createElement(
                   "p",
-                  { className: "text-sm text-muted-foreground leading-relaxed" },
+                  { className: "text-sm text-gray-600 dark:text-gray-400 leading-relaxed" },
                   item.description,
                 ),
               ),
@@ -718,10 +724,14 @@ function DocumentationContent() {
           React.createElement(
             "div",
             null,
-            React.createElement("h1", { className: "text-4xl font-bold mb-4" }, "Installation"),
+            React.createElement(
+              "h1",
+              { className: "text-4xl font-bold mb-4 text-gray-900 dark:text-white" },
+              "Installation",
+            ),
             React.createElement(
               "p",
-              { className: "text-xl text-muted-foreground" },
+              { className: "text-xl text-gray-700 dark:text-gray-300" },
               "Get started with NoodleUI in your React project.",
             ),
           ),
@@ -732,21 +742,28 @@ function DocumentationContent() {
             React.createElement(
               "div",
               null,
-              React.createElement("h2", { className: "text-2xl font-semibold mb-4" }, "Package Manager"),
+              React.createElement(
+                "h2",
+                { className: "text-2xl font-semibold mb-4 text-gray-900 dark:text-white" },
+                "Package Manager",
+              ),
               React.createElement(
                 "div",
                 { className: "space-y-4" },
                 React.createElement(
                   "div",
-                  { className: "border border-border rounded-lg overflow-hidden" },
+                  { className: "border border-gray-200 dark:border-white/20 rounded-lg overflow-hidden shadow-sm" },
                   React.createElement(
                     "div",
-                    { className: "flex items-center justify-between px-4 py-3 bg-muted border-b border-border" },
-                    React.createElement("span", { className: "text-sm font-medium" }, "npm"),
+                    {
+                      className:
+                        "flex items-center justify-between px-4 py-3 bg-blue-50 dark:bg-blue-900/50 border-b border-gray-200 dark:border-white/20",
+                    },
+                    React.createElement("span", { className: "text-sm font-medium text-gray-900 dark:text-white" }, "npm"),
                   ),
                   React.createElement(
                     "div",
-                    { className: "p-4 bg-gray-900 text-gray-100" },
+                    { className: "p-4 bg-black dark:bg-slate-950 text-white" },
                     React.createElement("code", { className: "text-sm" }, "npm install noodleui"),
                   ),
                 ),
@@ -754,7 +771,6 @@ function DocumentationContent() {
             ),
           ),
         )
-
       // Component sections with toggle functionality
       case "buttons":
         return renderComponentWithToggle("buttons", ButtonComponents)
@@ -793,27 +809,33 @@ function DocumentationContent() {
         return React.createElement(
           "div",
           { className: "text-center py-12" },
-          React.createElement("h1", { className: "text-2xl font-bold mb-2" }, "Coming Soon"),
-          React.createElement("p", { className: "text-muted-foreground" }, "This section is under development."),
+          React.createElement("h1", { className: "text-2xl font-bold mb-2 text-black dark:text-white" }, "Coming Soon"),
+          React.createElement("p", { className: "text-black dark:text-white" }, "This section is under development."),
         )
     }
   }
 
   return React.createElement(
     "div",
-    { className: "min-h-screen bg-background" },
+    { className: "min-h-screen transition-colors duration-300" },
     // Search Modal
     searchOpen &&
       React.createElement(
         "div",
-        { className: "fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-32" },
+        {
+          className:
+            "fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm z-50 flex items-start justify-center pt-32",
+        },
         React.createElement(
           "div",
-          { className: "bg-card rounded-2xl shadow-2xl border border-border w-full max-w-2xl mx-4" },
+          {
+            className:
+              "bg-white dark:bg-slate-800/95 backdrop-blur-md rounded-2xl shadow-2xl border border-black/20 dark:border-white/20 w-full max-w-2xl mx-4",
+          },
           React.createElement(
             "div",
-            { className: "flex items-center gap-3 p-4 border-b border-border" },
-            React.createElement(Search, { className: "w-5 h-5 text-muted-foreground" }),
+            { className: "flex items-center gap-3 p-4 border-b border-black/20 dark:border-white/20" },
+            React.createElement(Search, { className: "w-5 h-5 text-black dark:text-white" }),
             React.createElement("input", {
               type: "text",
               placeholder: "Search documentation...",
@@ -821,73 +843,82 @@ function DocumentationContent() {
               onChange: (e) => {
                 setSearchQuery(e.target.value)
               },
-              className: "flex-1 bg-transparent outline-none",
+              className:
+                "flex-1 bg-transparent outline-none text-black dark:text-white placeholder:text-black/60 dark:placeholder:text-white/60",
               autoFocus: true,
             }),
             React.createElement(
               "button",
               {
                 onClick: () => setSearchOpen(false),
-                className: "p-1 rounded-lg hover:bg-accent transition-colors",
+                className: "p-1 rounded-lg hover:bg-blue-100/80 dark:hover:bg-blue-900/50 transition-colors",
               },
-            React.createElement(X, { size: 16 }),
+              React.createElement(X, { size: 16, className: "text-black dark:text-white" }),
             ),
           ),
 
-        (searchQuery.trim() && searchResults.length > 0) && (
-          React.createElement(
-            "div",
-            { className: "max-h-64 overflow-y-auto border-t border-border" },
+          searchQuery.trim() &&
+            searchResults.length > 0 &&
             React.createElement(
-              "ul",
-              { className: "py-2" },
-              searchResults.map((result, index) =>
-                React.createElement(
-                  "li",
-                  { 
-                    key: index, 
-                    className: "px-4 py-3 cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border/50 last:border-b-0", 
-                    onClick: () => {
-                      setActiveSection(result.id)
-                      setSearchOpen(false)
-                      setSearchQuery("")
-                      setSearchResults([])
-                    }
-                  },
+              "div",
+              { className: "max-h-64 overflow-y-auto border-t border-black/20 dark:border-white/20" },
+              React.createElement(
+                "ul",
+                { className: "py-2" },
+                searchResults.map((result, index) =>
                   React.createElement(
-                    "div",
-                    { className: "flex items-center gap-3" },
-                    React.createElement(result.icon, { size: 16, className: "text-muted-foreground" }),
-                    React.createElement("span", { className: "font-medium" }, result.title)
-                  )
-                )
-              )
-            )
-          )
-        ),
-        (searchQuery.trim() && searchResults.length === 0) && (
-          React.createElement(
-            "div",
-            { className: "px-4 py-8 text-center text-muted-foreground border-t border-border" },
-            React.createElement("p", null, "No results found for \"", searchQuery, "\"")
-          )
-        ),
+                    "li",
+                    {
+                      key: index,
+                      className:
+                        "px-4 py-3 cursor-pointer hover:bg-blue-100/80 dark:hover:bg-blue-900/50 transition-colors border-b border-black/10 dark:border-white/10 last:border-b-0",
+                      onClick: () => {
+                        setActiveSection(result.id)
+                        setSearchOpen(false)
+                        setSearchQuery("")
+                        setSearchResults([])
+                      },
+                    },
+                    React.createElement(
+                      "div",
+                      { className: "flex items-center gap-3" },
+                      React.createElement(result.icon, { size: 16, className: "text-black dark:text-white" }),
+                      React.createElement(
+                        "span",
+                        { className: "font-medium text-black dark:text-white" },
+                        result.title,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          searchQuery.trim() &&
+            searchResults.length === 0 &&
+            React.createElement(
+              "div",
+              {
+                className:
+                  "px-4 py-8 text-center text-black dark:text-white border-t border-black/20 dark:border-white/20",
+              },
+              React.createElement("p", null, 'No results found for "', searchQuery, '"'),
+            ),
         ),
       ),
 
     React.createElement(
       "div",
       { className: "flex min-h-screen" },
-      // Sidebar
+// Sidebar
       React.createElement(
         "aside",
         {
           className:
-            "w-64 border-r border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 h-screen overflow-y-auto sidebar-scroll",
+            "w-64 border-r border-white/20 dark:border-white/20 bg-black dark:bg-black backdrop-blur-md supports-[backdrop-filter]:bg-black/90 dark:supports-[backdrop-filter]:bg-slate-800/60 sticky top-0 h-screen overflow-y-auto sidebar-scroll",
         },
         React.createElement(
           "div",
-          { className: "p-6 border-b border-border" },
+          { className: "p-6 border-b border-white/20 dark:border-white/20" },
           React.createElement(
             Link,
             { href: "/", className: "flex items-center gap-3" },
@@ -895,13 +926,13 @@ function DocumentationContent() {
               "div",
               {
                 className:
-                  "w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center",
+                  "w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-sm",
               },
               React.createElement(Layers, { className: "w-4 h-4 text-white" }),
             ),
             React.createElement(
               "span",
-              { className: "text-xl font-light" },
+              { className: "text-xl font-light text-white dark:text-white" },
               "Noodle",
               React.createElement("span", { className: "text-blue-500 font-medium" }, "UI"),
             ),
@@ -915,13 +946,16 @@ function DocumentationContent() {
               {
                 onClick: () => setSearchOpen(true),
                 className:
-                  "flex-1 flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground bg-muted rounded-lg hover:bg-accent transition-colors",
+                  "flex-1 flex items-center gap-2 px-3 py-2 text-sm text-white dark:text-white bg-blue-900/50 dark:bg-blue-900/50 rounded-lg hover:bg-blue-800/50 dark:hover:bg-blue-800/50 transition-colors border border-white/10 dark:border-white/10",
               },
               React.createElement(Search, { size: 14 }),
               React.createElement("span", null, "Search..."),
               React.createElement(
                 "kbd",
-                { className: "ml-auto text-xs bg-background px-1.5 py-0.5 rounded border" },
+                {
+                  className:
+                    "ml-auto text-xs bg-slate-800 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-white/20 dark:border-white/20 text-white dark:text-white",
+                },
                 "⌘K",
               ),
             ),
@@ -930,10 +964,13 @@ function DocumentationContent() {
               "button",
               {
                 onClick: toggleTheme,
-                className: "p-2 rounded-lg border border-border hover:bg-accent transition-colors",
+                className:
+                  "p-2 rounded-lg border border-white/20 dark:border-white/20 hover:bg-blue-900/50 dark:hover:bg-blue-900/50 transition-colors bg-slate-700/50 dark:bg-slate-700/50",
                 "aria-label": "Toggle theme",
               },
-              theme === "dark" ? React.createElement(Sun, { size: 14 }) : React.createElement(Moon, { size: 14 }),
+              theme === "dark"
+                ? React.createElement(Sun, { size: 14, className: "text-white dark:text-white" })
+                : React.createElement(Moon, { size: 14, className: "text-white dark:text-white" }),
             ),
 
             React.createElement(
@@ -941,11 +978,12 @@ function DocumentationContent() {
               {
                 href: "https://github.com/AnugrahAsh/noodleUI",
                 target: "_blank",
-                className: "p-2 rounded-lg border border-border hover:bg-accent transition-colors",
+                className:
+                  "p-2 rounded-lg border border-white/20 dark:border-white/20 hover:bg-blue-900/50 dark:hover:bg-blue-900/50 transition-colors bg-slate-700/50 dark:bg-slate-700/50",
                 rel: "noopener noreferrer",
                 "aria-label": "View on GitHub",
               },
-              React.createElement(Github, { size: 14 }),
+              React.createElement(Github, { size: 14, className: "text-white dark:text-white" }),
             ),
           ),
         ),
@@ -959,7 +997,9 @@ function DocumentationContent() {
               { key: index, className: "mb-8" },
               React.createElement(
                 "h3",
-                { className: "text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2" },
+                {
+                  className: "text-xs font-semibold text-white dark:text-white uppercase tracking-wider mb-3 px-2",
+                },
                 section.title,
               ),
               React.createElement(
@@ -973,8 +1013,8 @@ function DocumentationContent() {
                       onClick: () => setActiveSection(item.id),
                       className: `w-full flex items-center gap-3 px-3 py-2 text-sm rounded-lg transition-colors text-left ${
                         activeSection === item.id
-                          ? "bg-accent text-accent-foreground font-medium"
-                          : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                          ? "bg-blue-950/50 dark:bg-blue-950/50 text-blue-300 dark:text-blue-300 font-medium border border-blue-800/50 dark:border-blue-800/50"
+                          : "text-white dark:text-white hover:text-blue-300 dark:hover:text-blue-300 hover:bg-blue-900/40 dark:hover:bg-blue-900/40"
                       }`,
                     },
                     React.createElement(item.icon, { size: 16 }),
@@ -995,16 +1035,16 @@ function DocumentationContent() {
           "header",
           {
             className:
-              "sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6",
+              "sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-black/20 dark:border-white/20 bg-white dark:bg-slate-800/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/90 dark:supports-[backdrop-filter]:bg-slate-800/60 px-6",
           },
           React.createElement(
             "div",
-            { className: "flex items-center gap-2 text-sm text-muted-foreground" },
+            { className: "flex items-center gap-2 text-sm text-black dark:text-white" },
             React.createElement("span", null, "Docs"),
             React.createElement(ChevronRight, { size: 14 }),
             React.createElement(
               "span",
-              { className: "text-foreground capitalize" },
+              { className: "text-black dark:text-white capitalize font-medium" },
               sidebarItems.flatMap((section) => section.items).find((item) => item.id === activeSection)?.title ||
                 activeSection,
             ),
@@ -1018,8 +1058,7 @@ function DocumentationContent() {
         ),
       ),
     ),
-  )
-}
+  )}
 
 export default function Documentation() {
   return React.createElement(
@@ -1028,5 +1067,3 @@ export default function Documentation() {
     React.createElement(DocumentationContent),
   )
 }
-
-

@@ -339,7 +339,8 @@ export function ChatbotComponents() {
                 </pre>
               </div>
             ) : (
-              <div className="p-8 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 flex items-center justify-center">
+              <div className="p-8 
+bg-white dark:bg-transparent flex items-center justify-center">
                 {variant.component()}
               </div>
             )}

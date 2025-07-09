@@ -197,7 +197,8 @@ export function NavigationComponents() {
                 </pre>
               </div>
             ) : (
-              <div className="p-8 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 flex justify-center">
+              <div className="p-8 
+bg-white dark:bg-transparent flex justify-center">
                 {variant.component()}
               </div>
             )}

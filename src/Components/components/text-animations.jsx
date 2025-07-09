@@ -281,7 +281,8 @@ export function TextAnimationComponents() {
                 </pre>
               </div>
             ) : (
-              <div className="p-12 bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 flex items-center justify-center min-h-[200px]">
+              <div className="p-12 
+bg-white dark:bg-transparent flex items-center justify-center min-h-[200px]">
                 {variant.component()}
               </div>
             )}
