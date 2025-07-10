@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
-import LandingPage from './components/Landing'
-import Documentation from './components/Documentation'
+
 import { Analytics } from "@vercel/analytics/next"
+import LandingPage from './Components/LandingPage'
+import Documentation from './Components/Documentation'
 
 function App() {
   const [darkMode, setDarkMode] = useState(true)
