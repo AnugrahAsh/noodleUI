@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Moon, Sun, Github, ArrowRight, Sparkles, Zap, Layers, Palette, Code, Heart } from "lucide-react"
-import Footer from "./footer"
-import Navbar from "./navbar"
+import Footer from "./Footer"
+import Navbar from "./Navbar"
 import '../App.css' // Importing the CSS file for styles
 
 const LandingPage = ({ darkMode, toggleTheme }) => {
@@ -89,7 +89,7 @@ const LandingPage = ({ darkMode, toggleTheme }) => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <a
-              href="#docs"
+              href="/docs"
               className="group inline-flex items-center gap-2 px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-2xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <span>Get Started</span>
