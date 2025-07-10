@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import { Analytics } from "@vercel/analytics/react"
-import LandingPage from './Components/LandingPage'
+import LandingPage from './Components/Landing'
 import Documentation from './Components/Documentation'
 
 function App() {
